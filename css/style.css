@@ -1,0 +1,81 @@
+.sectionLeft {
+    float: left;
+    width: 80%;
+}
+
+.sectionRight {
+    float: right;
+    width: 20%;
+}
+
+.scoreContainer {
+    background-color: rgba(20, 19, 19, 0.411);
+    border-radius: 30px;
+    padding: 0.1px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: 50%;
+}
+
+.clickerContainer img {
+    position: relative;
+    transition: all .2s ease-in-out;
+}
+
+.clickerContainer img:hover {
+    transform: scale(1.10);
+}
+
+.clickerContainer img:active {
+    transform: scale(0.99);
+}
+
+.shopButton {
+    background-color: rgb(202, 201, 199);
+    transition: all .2 ease-in-out;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+}
+
+.shopButton #image {
+    width: 25%;
+}
+
+.shopButton img {
+    width: 64px;
+    height: 64px;
+}
+
+.shopButton:hover {
+    background-color: rgb(209, 209, 209);
+    transition: all .2 ease-in-out;
+}
+
+.shopButton #nameAndCost p {
+    margin: 0px;
+    width: 60%;
+}
+
+.shopButton #nameAndCost p:first-of-type {
+    font-size: 24px;
+}
+
+.shopButton #amount {
+    font-size: 48px;
+    color: #595959;
+    font-family: roboto;
+    width: 15%;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#upgradeContainer img {
+    height: 64px;
+    width: 64px;
+}

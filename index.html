@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Clicker Game</title>
+</head>
+
+<body>
+    <main>
+        <div class="sectionLeft">
+            <center>
+                <div class="scoreContainer unselectable">
+                    <p><span id="score">0</span> oreos</p>
+                    <p><span id="scorepersecond">0</span> oreos per second</p>
+                </div>
+                <div class="clickerContainer unselectable">
+                    <img src="img/oreo.png" alt="image of an oreo cookie" width="250px" height="250px" id="clicker">
+                </div>
+            </center>
+        </div>
+        <footer>
+            <h5>Oreo Clicker</h5>
+            <button onclick="resetGame()">Reset Game</button>
+        </footer>
+
+        <div class="sectionRight">
+            <div id="upgradeContainer"></div>
+            <div id="shopContainer"></div>
+        </div>
+
+        <script src="js/script.js"></script>
+    </main>
+</body>
+
+</html>
