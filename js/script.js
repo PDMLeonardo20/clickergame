@@ -4,7 +4,8 @@ var game = {
     totalScore: 0,
     totalClicks: 0,
     clickValue: 1,
-    version: 0.001,
+    version: 0.004,
+
 
     addToScore: function(amount) {
         this.score += amount;
@@ -22,36 +23,41 @@ var game = {
 
 //adiciona construções
 var building = {
+
     name: [
         "Cursor",
         "Grandma",
         "Cocoa Farm",
         "Factory",
-        "Mine"
+        "Mine",
+        "Chemistry Lab"
     ],
     image: [
         "cursor.jpg",
         "grandma.jpg",
         "cocoa.png",
         "factory.jpeg",
-        "mine.png"
+        "mine.png",
+        "chemistrylab.jpg"
     ],
     count: [
-        0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0
     ],
     income: [
         0.1,
         5,
         15,
         110,
-        1000
+        1000,
+        2300
     ],
     cost: [
         15,
         100,
         1100,
-        15000,
-        50000
+        5400,
+        12000,
+        33000
     ],
 
     purchase: function(index) {
@@ -75,10 +81,16 @@ var upgrade = {
         "Reiforced Fingers",
         "Reiforced Mouse",
         "Iron Rollers",
+        "Sloppy Kisses",
         "Better Watering Cans",
         "Titanium Mouse",
         "1st Grade Coals",
-        "Netherite Pickaxes"
+        "Netherite Pickaxes",
+        "Better Beckers",
+        "Hundred Fingers",
+        "Thousand Fingers",
+
+
 
     ],
     description: [
@@ -86,11 +98,17 @@ var upgrade = {
         "Clicking is twice as efficient",
         "Cursors are now twice as efficient",
         "Clicking is twice as efficient",
+        "Cursors are now twice as efficient",
         "Grandmas are twice as efficient",
         "Farms are twice as efficient",
         "Clicking is twice as efficient",
         "Factories are twice as efficient",
-        "Mines are twice as efficient"
+        "Mines are twice as efficient",
+        "Chemistry Labs are twice as efficient",
+        "Cursors are now four times efficient",
+        "Cursors are now four times efficient",
+
+
 
     ],
     image: [
@@ -99,10 +117,15 @@ var upgrade = {
         "reiforcedcursor.png",
         "reiforcedmouse.png",
         "ironrollers.png",
+        "slippykisses.png",
         "wateringcan.png",
         "titanuimmouse.png",
         "coal.png",
-        "netheritepickaxe.png"
+        "netheritepickaxe.png",
+        "chemistrylab.png",
+        "hundredfingers.png",
+        "thousandfingers.png",
+
     ],
     type: [
         "building", //cursor
@@ -110,10 +133,15 @@ var upgrade = {
         "building", //cursor
         "click", //click
         "building", //vovós
+        "building", //vovós
         "building", //fazendas
         "click", //click
         "building", //fábrica
-        "building" //minas
+        "building", //minas
+        "building", //cursor
+        "building", //cursor
+
+
     ],
     cost: [
         500,
@@ -121,10 +149,15 @@ var upgrade = {
         2500,
         3000,
         2000,
+        4000,
         10000,
         50000,
         40000,
-        75000
+        75000,
+        125000,
+        3000,
+        4000,
+
     ],
     buildingIndex: [
         0, //cursor
@@ -132,32 +165,47 @@ var upgrade = {
         0, //cursor
         -1, //click
         1, //vovó
+        1, //vovó
         2, //fazenda
         -1, //click
         3, //fábrica
-        4 //minas
+        4, //minas
+        5, //lab
+        0, //cursor
+        0, //cursor
+
     ],
     requirement: [
         15,
         500,
         25,
         1000,
+        5,
         15,
         5,
         10000,
         5,
-        5
+        5,
+        5,
+        50,
+        100,
+
     ],
     bonus: [
         2, // cursor
         2, // click
         2, // cursor
-        2, // click
+        4, // click
+        2, // vovó
         2, // vovó
         2, // fazenda
-        2, // click
+        8, // click
         2, // fábrica
-        2 // minas
+        2, // minas
+        2, // lab
+        4, // cursor
+        4, // cursor
+
     ],
     purchased: [
         false,
@@ -167,10 +215,17 @@ var upgrade = {
         false,
         false,
         false,
+        false,
+        false,
+        false,
+        false,
+        false,
         false
+
     ],
 
     purchase: function(index) {
+
         if (!this.purchased[index] && game.score >= this.cost[index]) {
             if (this.type[index] == "building" && building.count[this.buildingIndex[index]] >= this.requirement[index]) {
                 game.score -= this.cost[index];
@@ -196,6 +251,7 @@ var display = {
     updateScore: function() {
         document.getElementById("score").innerHTML = game.score.toFixed(1);
         document.getElementById("scorepersecond").innerHTML = game.getScorePerSecond().toFixed(1);
+        document.getElementById("version").innerHTML = 'version ' + game.version;
         document.title = game.score.toFixed(1) + " oreos - Oreo Clicker";
     },
     updateShop: function() {
@@ -297,7 +353,7 @@ setInterval(function() {
 setInterval(function() {
     display.updateScore();
     display.updateUpgrades();
-}, 10000);
+}, 1000);
 // atalho para salvar
 document.addEventListener("keydown", function(event) {
     if (event.ctrlKey && event.which == 83) {
