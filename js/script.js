@@ -4,7 +4,9 @@ var game = {
     totalScore: 0,
     totalClicks: 0,
     clickValue: 1,
-    version: 0.004,
+    version: 0.005,
+
+
 
 
     addToScore: function(amount) {
@@ -18,7 +20,7 @@ var game = {
             scorePerSecond += building.income[i] * building.count[i];
         }
         return scorePerSecond;
-    }
+    },
 };
 
 //adiciona construções
@@ -30,7 +32,8 @@ var building = {
         "Cocoa Farm",
         "Factory",
         "Mine",
-        "Chemistry Lab"
+        "Chemistry Lab",
+        "Ships"
     ],
     image: [
         "cursor.jpg",
@@ -38,26 +41,29 @@ var building = {
         "cocoa.png",
         "factory.jpeg",
         "mine.png",
-        "chemistrylab.jpg"
+        "chemistrylab.jpg",
+        "ship.png"
     ],
     count: [
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0
     ],
     income: [
         0.1,
-        5,
-        15,
-        110,
-        1000,
-        2300
+        1,
+        8,
+        44,
+        164,
+        389,
+        1444
     ],
     cost: [
         15,
         100,
         1100,
-        5400,
-        12000,
-        33000
+        5200,
+        11000,
+        32400,
+        113400
     ],
 
     purchase: function(index) {
@@ -75,6 +81,7 @@ var building = {
 //upgrades
 
 var upgrade = {
+
     name: [
         "Plastic Fingers",
         "Plastic Mouse",
@@ -89,6 +96,7 @@ var upgrade = {
         "Better Beckers",
         "Hundred Fingers",
         "Thousand Fingers",
+        "More Ships"
 
 
 
@@ -107,6 +115,7 @@ var upgrade = {
         "Chemistry Labs are twice as efficient",
         "Cursors are now four times efficient",
         "Cursors are now four times efficient",
+        "Ships are twice as efficient"
 
 
 
@@ -117,7 +126,7 @@ var upgrade = {
         "reiforcedcursor.png",
         "reiforcedmouse.png",
         "ironrollers.png",
-        "slippykisses.png",
+        "sloppykisses.png",
         "wateringcan.png",
         "titanuimmouse.png",
         "coal.png",
@@ -125,6 +134,7 @@ var upgrade = {
         "chemistrylab.png",
         "hundredfingers.png",
         "thousandfingers.png",
+        "moreships.png",
 
     ],
     type: [
@@ -140,6 +150,7 @@ var upgrade = {
         "building", //minas
         "building", //cursor
         "building", //cursor
+        "building", //navios
 
 
     ],
@@ -157,6 +168,7 @@ var upgrade = {
         125000,
         3000,
         4000,
+        220000,
 
     ],
     buildingIndex: [
@@ -173,6 +185,7 @@ var upgrade = {
         5, //lab
         0, //cursor
         0, //cursor
+        6, //navio
 
     ],
     requirement: [
@@ -189,6 +202,7 @@ var upgrade = {
         5,
         50,
         100,
+        5
 
     ],
     bonus: [
@@ -205,7 +219,7 @@ var upgrade = {
         2, // lab
         4, // cursor
         4, // cursor
-
+        2, // navio
     ],
     purchased: [
         false,
@@ -220,8 +234,8 @@ var upgrade = {
         false,
         false,
         false,
+        false,
         false
-
     ],
 
     purchase: function(index) {
@@ -265,7 +279,7 @@ var display = {
         for (i = 0; i < upgrade.name.length; i++) {
             if (!upgrade.purchased[i]) {
                 if (upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]) {
-                    document.getElementById("upgradeContainer").innerHTML += '<img src="img/' + upgrade.image[i] + '" title="' + upgrade.name[i] + ' &#10; ' + upgrade.description[i] + ' &#10 (' + upgrade.cost[i] + ' oreos)" onclick="upgrade.purchase(' + i + ')">';
+                    document.getElementById("upgradeContainer").innerHTML += '<img class="unselectable" src="img/' + upgrade.image[i] + '" title="' + upgrade.name[i] + ' &#10; ' + upgrade.description[i] + ' &#10 (' + upgrade.cost[i] + ' oreos)" onclick="upgrade.purchase(' + i + ')">';
                 } else if (upgrade.type[i] == "click" && game.totalClicks >= upgrade.requirement[i]) {
                     document.getElementById("upgradeContainer").innerHTML += '<img src="img/' + upgrade.image[i] + '" title="' + upgrade.name[i] + ' &#10; ' + upgrade.description[i] + ' &#10 (' + upgrade.cost[i] + ' oreos)" onclick="upgrade.purchase(' + i + ')">';
                 }
